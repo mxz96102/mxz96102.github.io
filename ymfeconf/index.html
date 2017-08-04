@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
+  <title>YMFE Conf 2017</title>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iMnrHsHHGW1CgnDYrSSzpijm41y8K4Mo"></script>
+  <script type="text/javascript" src="./lib/qr.min.js"></script>
+    <script type="text/javascript">function intval(v) {
+        v = parseInt(v);
+        return isNaN(v) ? 0 : v
+    }
+
+    function getPos(e) {
+        var l = 0;
+        var t = 0;
+        var w = intval(e.style.width);
+        var h = intval(e.style.height);
+        var wb = e.offsetWidth;
+        var hb = e.offsetHeight;
+        while (e.offsetParent) {
+            l += e.offsetLeft + (e.currentStyle ? intval(e.currentStyle.borderLeftWidth) : 0);
+            t += e.offsetTop + (e.currentStyle ? intval(e.currentStyle.borderTopWidth) : 0);
+            e = e.offsetParent
+        }
+        l += e.offsetLeft + (e.currentStyle ? intval(e.currentStyle.borderLeftWidth) : 0);
+        t += e.offsetTop + (e.currentStyle ? intval(e.currentStyle.borderTopWidth) : 0);
+        return {x: l, y: t, w: w, h: h, wb: wb, hb: hb}
+    }
+
+    function getScroll() {
+        var t, l, w, h;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            t = document.documentElement.scrollTop;
+            l = document.documentElement.scrollLeft;
+            w = document.documentElement.scrollWidth;
+            h = document.documentElement.scrollHeight
+        } else if (document.body) {
+            t = document.body.scrollTop;
+            l = document.body.scrollLeft;
+            w = document.body.scrollWidth;
+            h = document.body.scrollHeight
+        }
+        return {t: t, l: l, w: w, h: h}
+    }
+
+    function scroller(el, duration) {
+        if (typeof el != 'object') {
+            el = document.getElementById(el)
+        }
+        if (!el) return;
+        var z = this;
+        z.el = el;
+        z.p = getPos(el);
+        z.s = getScroll();
+        z.clear = function () {
+            window.clearInterval(z.timer);
+            z.timer = null;
+        };
+        z.t = (new Date).getTime();
+        z.step = function () {
+            var t = (new Date).getTime();
+            var p = (t - z.t) / duration;
+            if (t >= duration + z.t) {
+                z.clear();
+                window.setTimeout(function () {
+                    z.scroll(z.p.y, z.p.x)
+                }, 13)
+            } else {
+                st = ((-Math.cos(p * Math.PI) / 2) + 0.5) * (z.p.y - z.s.t) + z.s.t;
+                sl = ((-Math.cos(p * Math.PI) / 2) + 0.5) * (z.p.x - z.s.l) + z.s.l;
+                z.scroll(st, sl)
+            }
+        };
+        z.scroll = function (t, l) {
+            window.scrollTo(l, t)
+        };
+        z.timer = window.setInterval(function () {
+            z.step()
+        }, 13)
+        var m = document.querySelector('.menu');
+
+        m.className = /hidden/.test(m.className) ? m.className.replace(/hidden/, '') : m.className + ' hidden';
+    }</script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="wrapper">
+
+    <div class="guide">
+        <img class="logo" src="./assets/logo.png" alt="">
+        <div class="flex-box"></div>
+        <div class="menu hidden">
+            <ul>
+                
+                <li>
+                    <a onclick="javascript:scroller(&#39;guests&#39;, 500);">演讲嘉宾</a>
+                </li>
+                
+                <li>
+                    <a onclick="javascript:scroller(&#39;schedule&#39;, 500);">会议流程</a>
+                </li>
+                
+                <li>
+                    <a onclick="javascript:scroller(&#39;buy&#39;, 500);">购票信息</a>
+                </li>
+                
+                <li>
+                    <a onclick="javascript:scroller(&#39;position&#39;, 500);">位置信息</a>
+                </li>
+                
+                <li>
+                    <a onclick="javascript:scroller(&#39;sponsor&#39;, 500);">赞助信息</a>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="switch">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1501574461504"
+                 class="icon"
+                 viewBox="0 0 1024 1024" version="1.1" p-id="2366" width="16" height="16">
+                <path d="M0 64l1024 0 0 128-1024 0 0-128Z" p-id="2367" fill="#ffffff"/>
+                <path d="M0 448l1024 0 0 128-1024 0 0-128Z" p-id="2368" fill="#ffffff"/>
+                <path d="M0 832l1024 0 0 128-1024 0 0-128Z" p-id="2369" fill="#ffffff"/>
+            </svg>
+        </div>
+    </div>
+    
+    <div class="home" id="home">
+        <div class="background">
+            <img src="./assets/bg2.jpg ">
+            
+        </div>
+        <div class="content">
+        <div class="center">
+            <div class="title">
+                <img class="logo" src="./assets/logo.png" alt="">
+                <p>第二届去哪儿泛前端交流大会</p>
+                <div class="desc">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1501812860414"
+                         class="icon" style="" viewBox="150 100 700 700" version="1.1" p-id="2373">
+                        <path d="M500.3264 822.33344a20.48 20.48 0 0 0 33.95584 0l193.24928-287.08864a230.17472 230.17472 0 0 0 35.328-122.38848c0-130.58048-110.24384-236.83072-245.76-236.83072s-245.76 106.25024-245.76 236.83072c0 43.29472 12.26752 85.68832 35.81952 123.12576l193.16736 286.35136z m16.7936-605.36832c112.92672 0 204.8 87.87968 204.8 195.87072a188.7232 188.7232 0 0 1-28.71296 100.06528l-175.9232 261.3248-175.80032-260.62848a189.07136 189.07136 0 0 1-29.16352-100.7616c0-107.99104 91.87328-195.87072 204.8-195.87072z"
+                              fill="#ffffff" p-id="2374"/>
+                        <path d="M517.12 524.61568c64.2048 0 116.44928-50.52416 116.44928-112.64s-52.224-112.64-116.44928-112.64-116.44928 50.52416-116.44928 112.64 52.24448 112.64 116.44928 112.64z m0-184.32c41.61536 0 75.48928 32.1536 75.48928 71.68s-33.85344 71.68-75.48928 71.68-75.48928-32.1536-75.48928-71.68 33.87392-71.68 75.48928-71.68z"
+                              fill="#ffffff" p-id="2375"/>
+                    </svg>
+                    北京市某某区某某某某酒店
+                </div>
+                <br/>
+                <div class="desc">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1501813733068"
+                         class="icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="3675" width="128"
+                         height="128">
+                        <path d="M898.499681 222.731804 725.399251 222.731804l0-85.212754c0-16.954137-13.745049-30.699186-30.699186-30.699186s-30.699186 13.745049-30.699186 30.699186l0 85.212754L358.509187 222.731804l0-82.752726c0-16.954137-13.745049-30.699186-30.699186-30.699186s-30.699186 13.745049-30.699186 30.699186l0 82.752726L125.500319 222.731804c-32.921807 0-59.706847 26.784016-59.706847 59.706847l0 575.034639c0 32.92283 26.784016 59.706847 59.706847 59.706847l772.999362 0c32.921807 0 59.705823-26.784016 59.705823-59.706847L958.205505 282.438651C958.205505 249.516844 931.421488 222.731804 898.499681 222.731804zM896.807133 284.130176l0 97.219205c-1.14201-0.128937-2.301416-0.201591-3.477194-0.201591L725.399251 381.14779l0-97.017614L896.807133 284.130176zM664.000879 284.130176l0 97.017614L358.509187 381.14779l0-97.017614L664.000879 284.130176zM297.110815 284.130176l0 97.017614L127.191844 381.14779l0-97.017614L297.110815 284.130176zM127.191844 855.780741 127.191844 442.546162l766.137071 0c1.176802 0 2.335185-0.072655 3.477194-0.201591l0 413.43617L127.191844 855.780741zM674.865321 598.691431 349.134679 598.691431c-16.954137 0-30.699186 13.745049-30.699186 30.699186s13.745049 30.699186 30.699186 30.699186l325.730643 0c16.954137 0 30.699186-13.745049 30.699186-30.699186S691.819458 598.691431 674.865321 598.691431z"
+                              p-id="3676" fill="#ffffff"/>
+                    </svg>
+                    2017年10月23日
+                </div>
+            </div>
+            
+            <div class="qrcode">
+                <p>大会直播地址</p>
+                <div class="qrcanvas" datasrc=http://map.baidu.com/?poiShareId=8d6c9644462a194bb9bd6367&#38;tn=B_NORMAL_MAP&#38;hb=B_SATELLITE_STREET id="qrcode"></div>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    
+
+    
+    <div class="intro">
+        <div class="top">
+            <svg class="top-svg" height="100%" preserveAspectRatio="none" version="1.1" viewBox="0 890 1000 134"
+                 width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M0,890 L500,1024,1000,890,1000,1024,0,1024,0,890z" fill-rule="evenodd" id="Rectangle"
+                      stroke="none"></path>
+            </svg>
+        </div>
+        <div class="center">
+            <h1>大会主题</h1>
+            <div class="topic">
+                <p>React Native 应用与实践</p>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div id="guests" class="guests">
+        <div class="center">
+            <h1>演讲嘉宾</h1>
+            <ul class="guest-list">
+                
+                <li>
+                    <img src=./assets/guests.jpg/>
+                    <h2>嘉宾名称</h2>
+                    <p>采用标准的html及css规范，使您的设计便于维护及二次开发</p>
+                </li>
+                
+                <li>
+                    <img src=./assets/guests.jpg/>
+                    <h2>嘉宾名称</h2>
+                    <p>采用标准的html及css规范，使您的设计便于维护及二次开发</p>
+                </li>
+                
+                <li>
+                    <img src=./assets/guests.jpg/>
+                    <h2>嘉宾名称</h2>
+                    <p>采用标准的html及css规范，使您的设计便于维护及二次开发</p>
+                </li>
+                
+                <li>
+                    <img src=./assets/guests.jpg/>
+                    <h2>嘉宾名称</h2>
+                    <p>采用标准的html及css规范，使您的设计便于维护及二次开发</p>
+                </li>
+                
+                <li>
+                    <img src=./assets/guests.jpg/>
+                    <h2>嘉宾名称</h2>
+                    <p>采用标准的html及css规范，使您的设计便于维护及二次开发</p>
+                </li>
+                
+                <li>
+                    <img src=./assets/guests.jpg/>
+                    <h2>嘉宾名称</h2>
+                    <p>采用标准的html及css规范，使您的设计便于维护及二次开发</p>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+
+    
+    <div class="schedule" id="schedule">
+        <h1>会议流程</h1>
+        <ul>
+            
+            <li>
+                <div class="time"><span>13:00 - 13:30</span></div>
+                <div class="content">
+                    <div class="title">
+                        签到
+                        
+                        
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <div class="time"><span>13:30 - 14:00</span></div>
+                <div class="content">
+                    <div class="title">
+                        QRN的现状与未来
+                        
+                        <span> - XXXX</span>
+                        
+                        
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <div class="time"><span>14:00 - 14:40</span></div>
+                <div class="content">
+                    <div class="title">
+                        QRN 在业务线上的实践
+                        
+                        <span> - WWWW</span>
+                        
+                        
+                        <a href=http://ymfe.org target="new" class="deck-link">
+                            <span>文档</span>
+                            <svg id="icon-download" viewBox="0 0 26 28" width="100%" height="100%">
+                                <path d="M20 21c0-0.547-0.453-1-1-1s-1 0.453-1 1 0.453 1 1 1 1-0.453 1-1zM24 21c0-0.547-0.453-1-1-1s-1 0.453-1 1 0.453 1 1 1 1-0.453 1-1zM26 17.5v5c0 0.828-0.672 1.5-1.5 1.5h-23c-0.828 0-1.5-0.672-1.5-1.5v-5c0-0.828 0.672-1.5 1.5-1.5h7.266l2.109 2.125c0.578 0.562 1.328 0.875 2.125 0.875s1.547-0.313 2.125-0.875l2.125-2.125h7.25c0.828 0 1.5 0.672 1.5 1.5zM20.922 8.609c0.156 0.375 0.078 0.812-0.219 1.094l-7 7c-0.187 0.203-0.453 0.297-0.703 0.297s-0.516-0.094-0.703-0.297l-7-7c-0.297-0.281-0.375-0.719-0.219-1.094 0.156-0.359 0.516-0.609 0.922-0.609h4v-7c0-0.547 0.453-1 1-1h4c0.547 0 1 0.453 1 1v7h4c0.406 0 0.766 0.25 0.922 0.609z"></path>
+                            </svg>
+                        </a>
+                        
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <div class="time"></div>
+            </li>
+        </ul>
+    </div>
+    
+
+    <div class="about" id="about">
+        <h1>
+            关于我们
+        </h1>
+        <img src="./assets/YMFE.png" alt="">
+        <p>
+            去哪儿网移动架构组（YMFE）是由FE，iOS和Android工程师共同组成的，去哪儿最具想象力、创造力和影响力的大前端团队。<br/>
+            在如今移动设备飞速发展的时代，移动网站和应用充斥着生活的每个角落。<br/>我们致力于为业务开发提供一体化的移动开发解决方案，努力提升各个产品线在移动端的开发效率及使用体验。<br/>
+            目前，我们产出的框架和基础服务已运行在去哪儿网无数项目之中，不仅仅如此，我们还希望持续改进和完善这些解决方案，以期帮助各个业务线打造出最好的产品。
+        </p>
+        <a href="http://ymfe.org" target="_blank">
+            <div class="more">
+                了解更多
+            </div>
+        </a>
+    </div>
+
+    
+    <div class="buy" id="buy">
+        <h1>购票信息</h1>
+        <div class="tickets">
+            
+            <div class="ticket --flex-column">
+                <div class="top --flex-column">
+                    <div class="confname -bold">YMFE conf</div>
+                    <div class="typename">早鸟票</div>
+                    <div class="img">
+                        <img src="./assets/logo.png" alt=""/>
+                    </div>
+                    <div class="deetz --flex-row-j!sb">
+                        <ul>
+                            <li class="-bold">享受权益</li>
+                            
+                            <li v-for="desc in $value.desc">普通票的所有权益</li>
+                            
+                            <li v-for="desc in $value.desc">更加优惠的价格</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="rip"></div>
+                <div class="bottom --flex-row-j!sb">
+                    <a class="buy" href="http://ymfe.org/">¥100 立即购买</a>
+                </div>
+            </div>
+            
+            <div class="ticket --flex-column">
+                <div class="top --flex-column">
+                    <div class="confname -bold">YMFE conf</div>
+                    <div class="typename">普通票</div>
+                    <div class="img">
+                        <img src="./assets/logo.png" alt=""/>
+                    </div>
+                    <div class="deetz --flex-row-j!sb">
+                        <ul>
+                            <li class="-bold">享受权益</li>
+                            
+                            <li v-for="desc in $value.desc">参加大会的所有流程</li>
+                            
+                            <li v-for="desc in $value.desc">……</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="rip"></div>
+                <div class="bottom --flex-row-j!sb">
+                    <a class="buy" href="http://ymfe.org/">¥200 立即购买</a>
+                </div>
+            </div>
+            
+            <div class="ticket --flex-column">
+                <div class="top --flex-column">
+                    <div class="confname -bold">YMFE conf</div>
+                    <div class="typename">VIP票</div>
+                    <div class="img">
+                        <img src="./assets/logo.png" alt=""/>
+                    </div>
+                    <div class="deetz --flex-row-j!sb">
+                        <ul>
+                            <li class="-bold">享受权益</li>
+                            
+                            <li v-for="desc in $value.desc">普通票的所有权益</li>
+                            
+                            <li v-for="desc in $value.desc">参会纪念品</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="rip"></div>
+                <div class="bottom --flex-row-j!sb">
+                    <a class="buy" href="http://ymfe.org/">¥300 立即购买</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="sponsor" id="sponsor">
+        <h1>赞助信息</h1>
+        <div class="center">
+            
+            <img src="http://source.qunarzz.com/common/hf/logo.png" alt="qunar">
+            
+        </div>
+    </div>
+    
+
+    
+
+    
+    <div class="map" id="position">
+        <h1>位置信息</h1>
+        <div id="map"></div>
+    </div>
+    
+
+    <div class="foot">
+        <p>关注我们的博客以获得更多最新消息</p>
+        <div id="footqr" datasrc="http://YMFE.org">
+
+        </div>
+        <div class="link">
+            
+            <a href="https://github.com/YMFE">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1501829393114" class="icon" style="" viewBox="0 0 1024 1024" version="1.1">
+                    <path d="M530.01791-7.557299C672.947218-4.362634 790.76646 44.643525 885.072968 139.46118 979.315583 234.342728 1028.002276 354.462128 1031.133048 496.752503 1029.599609 610.546467 996.566773 708.558787 933.759661 795.453672 870.888656 882.412451 789.233021 940.874819 687.13153 977.230106 674.544551 978.827438 665.088342 977.230106 660.424132 972.502002 655.696028 966.176565 652.565256 959.851129 652.565256 953.525692L654.098695 814.429982C654.098695 790.725568 650.967924 771.749259 643.109048 755.967614 636.847505 740.122076 628.988629 729.068536 619.532421 721.20966 677.675322 718.014995 729.55668 699.038685 776.646041 664.280731 822.201963 631.056216 847.375922 566.268412 850.506694 471.450757 850.506694 444.551679 845.77859 419.249933 836.322382 397.142851 826.930067 374.971877 814.343087 354.462128 798.625336 337.083151 801.820001 330.757715 806.484211 314.97607 808.081544 291.207763 811.212315 267.503349 806.484211 237.473499 793.897232 202.715545 793.897232 201.118213 782.907584 201.118213 760.92829 204.248984 738.948995 207.443649 704.382721 224.822626 655.696028 254.852476 614.86821 243.798936 573.976499 237.473499 530.01791 237.473499 486.059321 237.473499 445.16761 243.798936 404.339793 254.852476 357.186538 223.225294 321.086825 207.443649 299.10753 204.248984 277.064343 201.118213 266.074695 201.118213 266.074695 202.715545 253.551609 237.473499 248.823505 267.503349 251.954276 291.207763 255.085048 314.97607 258.21582 330.757715 261.410484 337.083151 245.692733 354.462128 231.508421 373.438438 223.649545 397.142851 214.25723 419.249933 209.529126 444.551679 209.529126 472.984196 212.659898 567.865744 236.236525 631.056216 281.792447 665.878064 327.348368 700.636018 379.229726 719.612327 437.308734 722.743099 429.449859 729.068536 423.188316 736.991305 418.460211 748.044845 412.198668 759.098386 409.067897 773.346591 405.937125 789.128236 388.622041 798.648337 366.642747 801.779109 336.804576 800.24567 306.966406 798.648337 281.792447 781.26936 259.813152 746.447513 248.823505 729.068536 237.833857 716.417663 223.649545 708.558787 209.529126 700.636018 197.00604 695.907914 181.288289 694.310581 168.701309 692.713249 160.842433 694.310581 157.711662 700.636018 154.58089 705.364122 160.842433 713.286891 176.560184 724.340431 192.277936 735.393972 204.801022 746.447513 212.659898 759.098386 220.518774 771.749259 226.84421 785.997464 233.105753 798.648337 240.964629 819.158086 258.21582 836.600956 286.520551 850.785269 313.227949 865.033474 352.522328 866.630807 402.74246 857.110705L404.339793 950.39492C404.339793 958.317689 401.209021 964.643126 396.480917 969.37123 391.752813 975.696667 382.360498 977.230106 369.773518 974.099334 267.672028 939.34138 185.952499 877.684347 123.145387 792.322901 60.274382 706.961454 28.902772 607.351802 27.30544 495.155171 30.436212 351.267463 79.122905 232.745395 173.429413 137.927741 267.672028 43.046193 387.024709-5.959967 528.420578-9.090738L530.01791-7.557299Z" p-id="4363" fill="#ffffff"/>
+                </svg>
+            </a>
+            
+            
+        </div>
+        <p>
+            ©YMFE 2017
+        </p>
+    </div>
+</div>
+</body>
+<script>
+    window.onload = function () {
+        var map = new window.BMap.Map(document.getElementById('map'));    // 创建Map实例
+        var point = new window.BMap.Point(116.3122194717,39.9833558862)
+        ;
+        var marker = new window.BMap.Marker(point);
+
+        map.centerAndZoom(point, 18);  // 初始化地图,设置中心点坐标和地图级别
+        map.addOverlay(new window.BMap.Marker(point));
+        map.addControl(new window.BMap.MapTypeControl());   // 添加地图类型控件
+        map.setCurrentCity('北京');          // 设置地图显示的城市 此项是必须设置的
+        marker.setLabel(new window.BMap.Label('大会举行地址'));
+
+        if (document.querySelector('.qrcode')) {
+            var qr = document.getElementById("qrcode");
+
+            new QRCode(qr, {
+                text: qr.attributes.dataSrc.value,
+                width: 128,
+                height: 128,
+                colorDark: "#333",
+                colorLight: "#fff",
+            });
+        }
+
+        if (document.querySelector('#footqr')) {
+            var qr = document.getElementById("footqr");
+
+            new QRCode(qr, {
+                text: qr.attributes.dataSrc.value,
+                width: 128,
+                height: 128,
+                colorDark: "#333",
+                colorLight: "#fff",
+            });
+        }
+
+        var sw = document.querySelector('.switch')
+
+        sw.onclick = function () {
+            var menu = document.querySelector('.menu');
+
+            menu.className = /hidden/.test(menu.className) ? menu.className.replace(/hidden/, '') : menu.className + ' hidden';
+        }
+
+    }
+</script>
+</html>
